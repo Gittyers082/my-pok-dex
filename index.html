@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Pokédex</title>
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/device.css" />
+  </head>
+  <body>
+    <div class="device">
+      <header class="device-top">
+        <div class="lens"></div>
+        <div class="lights">
+          <span class="light light--red"></span>
+          <span class="light light--yellow"></span>
+          <span class="light light--green"></span>
+        </div>
+      </header>
+
+      <main id="screen" class="screen"></main>
+
+      <nav class="device-controls">
+        <div class="dpad">
+          <button class="dpad-btn up" aria-label="Up"></button>
+          <button class="dpad-btn left" aria-label="Left"></button>
+          <button class="dpad-btn right" aria-label="Right"></button>
+          <button class="dpad-btn down" aria-label="Down"></button>
+        </div>
+        <div class="action-btns">
+          <button class="action-btn" aria-label="Back">B</button>
+          <button class="action-btn" aria-label="Select">A</button>
+        </div>
+      </nav>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
