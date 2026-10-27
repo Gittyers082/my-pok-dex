@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Pokédex</title>
 
+    <link rel="manifest" href="manifest.webmanifest" />
+
+    <meta name="theme-color" content="#c0392b" />
+
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="icons/icon-192.png" />
+
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/device.css" />
     <link rel="stylesheet" href="css/screen.css" />
@@ -14,7 +21,13 @@
     <div class="device">
       <header class="device-top">
         <div class="lens"></div>
-        <div class="lights">
+
+        <div
+          class="lights"
+          id="lights"
+          role="status"
+          aria-label="Connection status"
+        >
           <span class="light light--red"></span>
           <span class="light light--yellow"></span>
           <span class="light light--green"></span>
