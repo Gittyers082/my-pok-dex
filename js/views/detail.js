@@ -41,7 +41,7 @@ export async function detailView(screen, params, isCurrent) {
     screen.innerHTML = `
       <a class="back-link" href="#/">&lt; BACK</a>
       <article class="entry">
-        <img class="entry-sprite" src="${pokemon.sprite}" alt="${pokemon.name}">
+        <img class="entry-sprite" src="${pokemon.sprite}" alt="${pokemon.name}" crossorigin="anonymous">
         <p class="entry-number">No. ${number}</p>
         <h2 class="entry-name">${pokemon.name}</h2>
         <p class="entry-types">
@@ -53,8 +53,11 @@ export async function detailView(screen, params, isCurrent) {
     `;
   } catch (error) {
     if (!isCurrent()) return;
+    const message = navigator.onLine
+      ? `ERROR: ${error.message}`
+      : "NO SIGNAL. THIS ENTRY HAS NOT BEEN SAVED TO THE DEVICE YET.";
     screen.innerHTML = `
-      <p>> ERROR: ${error.message}</p>
+      <p>> ${message}</p>
       <a class="back-link" href="#/">&lt; BACK</a>
     `;
   }
