@@ -39,7 +39,11 @@ export async function detailView(screen, params, isCurrent) {
 
     const number = String(pokemon.id).padStart(4, "0");
     screen.innerHTML = `
-      <a class="back-link" href="#/">&lt; BACK</a>
+      <nav class="entry-nav">
+        <a class="back-link" href="#/">&lt; BACK</a>
+        ${pokemon.id > 1 ? `<a class="back-link" href="#/pokemon/${pokemon.id - 1}" aria-label="Previous Pokémon">&lt; PREV</a>` : ""}
+        <a class="back-link" href="#/pokemon/${pokemon.id + 1}" aria-label="Next Pokémon">NEXT &gt;</a>
+      </nav>
       <article class="entry">
         <img class="entry-sprite" src="${pokemon.sprite}" alt="${pokemon.name}" crossorigin="anonymous">
         <p class="entry-number">No. ${number}</p>

@@ -51,7 +51,13 @@ function findNext(from, direction) {
 
 function move(direction) {
   if (!selected || !screen.contains(selected)) {
-    const first = screen.querySelector(".card") ?? getSelectables()[0];
+    // start from what's on screen, so a restored scroll position isn't lost
+    const top = screen.getBoundingClientRect().top;
+    const cards = [...screen.querySelectorAll(".card")];
+    const first =
+      cards.find((el) => el.getBoundingClientRect().top >= top) ??
+      cards[0] ??
+      getSelectables()[0];
     if (first) select(first);
     return;
   }

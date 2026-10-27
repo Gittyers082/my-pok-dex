@@ -189,3 +189,11 @@
   height: 100%;
   background: var(--screen-text);
 }
+
+.entry-nav {
+  display: flex;
+  gap: 8px;
+}
+.entry-nav .back-link:first-child {
+  margin-right: auto;
+}

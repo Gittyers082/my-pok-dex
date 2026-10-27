@@ -5,6 +5,8 @@
 const routes = [];
 let screen = null;
 let renderCount = 0;
+let currentPath = null;
+const scrollPositions = {};
 
 export function addRoute(pattern, view) {
   routes.push({ pattern, view });
@@ -29,15 +31,17 @@ function matchRoute(pattern, path) {
 
 async function render() {
   const path = location.hash.slice(1) || "/";
+  if (currentPath !== null) scrollPositions[currentPath] = screen.scrollTop;
+  currentPath = path;
+  const myRender = ++renderCount;
+  const isCurrent = () => myRender === renderCount;
 
   for (const route of routes) {
     const params = matchRoute(route.pattern, path);
     if (params) {
-      const myRender = ++renderCount;
-      const isCurrent = () => myRender === renderCount;
-
       screen.scrollTop = 0;
       await route.view(screen, params, isCurrent);
+      if (isCurrent()) screen.scrollTop = scrollPositions[path] ?? 0;
       return;
     }
   }

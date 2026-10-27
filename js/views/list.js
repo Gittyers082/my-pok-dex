@@ -2,7 +2,7 @@
 // views/list.js — the grid of Pokémon + search
 // ============================================
 
-import { getPokemonList, getPokemonIndex } from "../api.js";
+import { getPokemonList, getPokemonIndex, LAST_SPECIES_ID } from "../api.js";
 
 const PAGE_SIZE = 30;
 const MAX_RESULTS = 60;
@@ -64,19 +64,22 @@ export async function listView(screen, params, isCurrent) {
   function showBrowse() {
     status.textContent = "";
     grid.innerHTML = browsed.map(cardHtml).join("");
-    button.hidden = false;
+    button.hidden = browsed.length % PAGE_SIZE !== 0;
   }
 
   async function loadPage() {
     button.disabled = true;
     button.textContent = "LOADING...";
     try {
-      const page = await getPokemonList(PAGE_SIZE, browsed.length);
+      const all = await getPokemonList(PAGE_SIZE, browsed.length);
       if (!isCurrent()) return;
+      // past the last species the API lists alt forms (id 10001+); stop there
+      const page = all.filter((p) => p.id < LAST_SPECIES_ID);
       browsed.push(...page);
       if (!lastQuery)
         grid.insertAdjacentHTML("beforeend", page.map(cardHtml).join(""));
       button.textContent = "LOAD MORE";
+      if (page.length < PAGE_SIZE) button.hidden = true;
     } catch (error) {
       button.textContent = "RETRY";
       console.error(error);
@@ -113,9 +116,12 @@ export async function listView(screen, params, isCurrent) {
     debounce(() => runSearch(input.value), 250),
   );
 
-  input.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" && lastQuery && results.length > 0) {
-      location.hash = `#/pokemon/${results[0].id}`;
+  input.addEventListener("keydown", async (event) => {
+    if (event.key === "Enter") {
+      // don't wait for the debounce, or Enter opens the previous query's match
+      await runSearch(input.value);
+      if (lastQuery && results.length > 0)
+        location.hash = `#/pokemon/${results[0].id}`;
     }
     if (event.key === "Escape") {
       input.value = "";

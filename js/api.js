@@ -31,7 +31,7 @@ export async function getPokemonList(limit = 30, offset = 0) {
 }
 
 const INDEX_KEY = "dex:pokemon-index:v1";
-const LAST_SPECIES_ID = 10000;
+export const LAST_SPECIES_ID = 10000;
 
 function readSavedIndex() {
   try {
