@@ -1,0 +1,46 @@
+/* ============================================
+   screen.css — how things look INSIDE the screen
+   ============================================ */
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.entry-sprite {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(140, 245, 164, 0.4));
+}
+
+.entry-number {
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+
+.entry-name {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.entry-types {
+  display: flex;
+  gap: 8px;
+}
+
+.type {
+  border: 1px solid var(--screen-text);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.entry-size {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
