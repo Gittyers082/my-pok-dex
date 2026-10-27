@@ -1,0 +1,39 @@
+/* ============================================
+   base.css — variables, reset, page layout
+   ============================================ */
+
+:root {
+  --device-body: #c0392b;
+  --device-shadow: #8e2a20;
+  --device-trim: #2c2c34;
+  --lens-color: #3fa9f5;
+  --screen-bg: #1b2a1f;
+  --screen-text: #8cf5a4;
+  --page-bg: #15151b;
+
+  --radius: 18px;
+  --font-screen: "Courier New", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: var(--page-bg);
+  font-family: system-ui, sans-serif;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+}
