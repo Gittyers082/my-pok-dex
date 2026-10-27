@@ -7,6 +7,18 @@
   text-decoration: none;
 }
 
+.screen a:focus,
+.screen button:focus {
+  outline: 2px solid var(--screen-text);
+  outline-offset: -2px;
+  background: rgba(140, 245, 164, 0.18);
+  box-shadow: 0 0 12px rgba(140, 245, 164, 0.6);
+}
+.back-link {
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
 .screen-title {
   font-size: 1rem;
   letter-spacing: 3px;
@@ -40,6 +52,7 @@
 
 .search-status {
   min-height: 1.4em;
+  margin: 6px 0;
   font-size: 0.75rem;
   opacity: 0.7;
 }
