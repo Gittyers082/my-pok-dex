@@ -3,6 +3,7 @@
 // ============================================
 
 import { addRoute, startRouter } from "./router.js";
+import { startControls } from "./controls.js";
 import { listView } from "./views/list.js";
 import { detailView } from "./views/detail.js";
 
@@ -19,11 +20,12 @@ addRoute("/", listView);
 addRoute("/pokemon/:id", detailView);
 
 async function boot() {
-  printLine("BOOTING DEX OS v0.3...");
+  printLine("BOOTING DEX OS v0.5...");
   await sleep(400);
   printLine("READY.");
   await sleep(300);
   startRouter(screen);
+  startControls(screen);
 }
 
 boot();
