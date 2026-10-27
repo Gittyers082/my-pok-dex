@@ -2,6 +2,77 @@
    screen.css — how things look INSIDE the screen
    ============================================ */
 
+.screen a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.screen-title {
+  font-size: 1rem;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 8px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px;
+  border: 1px solid rgba(140, 245, 164, 0.25);
+  border-radius: 6px;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.card:hover,
+.card:focus-visible {
+  background: rgba(140, 245, 164, 0.1);
+  border-color: var(--screen-text);
+}
+.card img {
+  width: 72px;
+  height: 72px;
+  image-rendering: pixelated;
+}
+.card-number {
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+.card-name {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  text-align: center;
+  word-break: break-word;
+}
+
+.load-more {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px;
+  background: transparent;
+  color: var(--screen-text);
+  border: 1px solid var(--screen-text);
+  border-radius: 6px;
+  font-family: var(--font-screen);
+  letter-spacing: 2px;
+}
+.load-more:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
 .entry {
   display: flex;
   flex-direction: column;
@@ -43,4 +114,30 @@
 .entry-size {
   font-size: 0.85rem;
   opacity: 0.8;
+}
+
+.stats {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.stat {
+  display: grid;
+  grid-template-columns: 44px 32px 1fr;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  text-align: left;
+}
+.stat-bar {
+  height: 8px;
+  background: rgba(140, 245, 164, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.stat-fill {
+  height: 100%;
+  background: var(--screen-text);
 }
