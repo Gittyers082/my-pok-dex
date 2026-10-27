@@ -47,15 +47,39 @@
   height: 14px;
   border-radius: 50%;
   border: 2px solid var(--device-trim);
+  opacity: 0.25;
+  transition:
+    opacity 0.3s,
+    box-shadow 0.3s;
 }
 .light--red {
   background: #ff4d4d;
+  color: #ff4d4d;
 }
 .light--yellow {
   background: #ffd23f;
+  color: #ffd23f;
 }
 .light--green {
   background: #4dff88;
+  color: #4dff88;
+}
+
+.lights[data-status="online"] .light--green,
+.lights[data-status="offline"] .light--red,
+.lights[data-status="booting"] .light--yellow {
+  opacity: 1;
+  box-shadow: 0 0 10px currentColor;
+}
+.lights[data-status="offline"] .light--red,
+.lights[data-status="booting"] .light--yellow {
+  animation: blink 0.8s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
 }
 
 .screen {
