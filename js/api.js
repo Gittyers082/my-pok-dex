@@ -30,15 +30,52 @@ export async function getPokemonList(limit = 30, offset = 0) {
   });
 }
 
+const INDEX_KEY = "dex:pokemon-index:v1";
+const LAST_SPECIES_ID = 10000;
+
+function readSavedIndex() {
+  try {
+    const saved = localStorage.getItem(INDEX_KEY);
+    return saved ? JSON.parse(saved) : null;
+  } catch {
+    return null;
+  }
+}
+function saveIndex(list) {
+  try {
+    localStorage.setItem(INDEX_KEY, JSON.stringify(list));
+  } catch {}
+}
+
+async function loadIndex() {
+  const saved = readSavedIndex();
+  if (saved) return saved;
+
+  const all = await getPokemonList(100000, 0);
+  const species = all.filter((p) => p.id < LAST_SPECIES_ID);
+  saveIndex(species);
+  return species;
+}
+
+let indexPromise = null;
+
+export function getPokemonIndex() {
+  if (!indexPromise) {
+    indexPromise = loadIndex().catch((error) => {
+      indexPromise = null;
+      throw error;
+    });
+  }
+  return indexPromise;
+}
+
 export async function getPokemon(idOrName) {
   const response = await fetch(`${BASE_URL}/pokemon/${idOrName}`);
-
   if (!response.ok) {
     throw new Error(
       `Pokémon "${idOrName}" not found (status ${response.status})`,
     );
   }
-
   const data = await response.json();
 
   return {
