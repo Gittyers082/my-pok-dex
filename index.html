@@ -25,14 +25,30 @@
 
       <nav class="device-controls">
         <div class="dpad">
-          <button class="dpad-btn up" aria-label="Up"></button>
-          <button class="dpad-btn left" aria-label="Left"></button>
-          <button class="dpad-btn right" aria-label="Right"></button>
-          <button class="dpad-btn down" aria-label="Down"></button>
+          <button class="dpad-btn up" data-action="up" aria-label="Up"></button>
+          <button
+            class="dpad-btn left"
+            data-action="left"
+            aria-label="Left"
+          ></button>
+          <button
+            class="dpad-btn right"
+            data-action="right"
+            aria-label="Right"
+          ></button>
+          <button
+            class="dpad-btn down"
+            data-action="down"
+            aria-label="Down"
+          ></button>
         </div>
         <div class="action-btns">
-          <button class="action-btn" aria-label="Back">B</button>
-          <button class="action-btn" aria-label="Select">A</button>
+          <button class="action-btn" data-action="b" aria-label="Back">
+            B
+          </button>
+          <button class="action-btn" data-action="a" aria-label="Select">
+            A
+          </button>
         </div>
       </nav>
     </div>
