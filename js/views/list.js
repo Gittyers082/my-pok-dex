@@ -14,7 +14,7 @@ function cardHtml(pokemon) {
   const number = String(pokemon.id).padStart(4, "0");
   return `
     <a class="card" href="#/pokemon/${pokemon.id}">
-      <img src="${pokemon.sprite}" alt="${pokemon.name}" loading="lazy">
+      <img src="${pokemon.sprite}" alt="${pokemon.name}" loading="lazy" crossorigin="anonymous">
       <span class="card-number">${number}</span>
       <span class="card-name">${pokemon.name}</span>
     </a>
